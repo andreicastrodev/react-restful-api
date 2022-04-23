@@ -1,40 +1,43 @@
 import React from 'react';
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
   VStack,
-  Code,
-  Grid,
   theme,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
 
+
+import Header from './components/Header';
+import Details from "./components/Details"
+import Food from './components/main/Food';
 function App() {
+
+  const INIT_STATE = [
+    {
+      title: 'Sushi',
+      description: 'bunch of fishhes',
+      amount: 22.29
+    },
+    {
+      title: 'Sinigang na Baboy',
+      description: 'bunch of fishhes',
+      amount: 22.29
+    },
+    {
+      title: 'Almond tofu',
+      description: 'bunch of fishhes',
+      amount: 22.29
+    },
+  ]
+
+
+
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
+      <VStack>
+        <Header />
+        <Details />
+        <Food data={INIT_STATE} />
+      </VStack>
     </ChakraProvider>
   );
 }
