@@ -9,26 +9,35 @@ import {
 import Header from './components/Header';
 import Details from "./components/Details"
 import Food from './components/main/Food';
+import { useState } from 'react';
 function App() {
+
+  const [cartState, setCartState] = useState({
+    items: [],
+    totalAmount: 0
+  })
+
 
   const INIT_STATE = [
     {
       title: 'Sushi',
-      description: 'bunch of fishhes',
-      amount: 22.29
+      description: 'Japanese meal ',
+      price: 22.29,
+      id: "202"
     },
     {
       title: 'Sinigang na Baboy',
-      description: 'bunch of fishhes',
-      amount: 22.29
+      description: 'Pork and veggies ',
+      price: 22.29,
+      id: "102"
     },
     {
       title: 'Almond tofu',
-      description: 'bunch of fishhes',
-      amount: 22.29
+      description: 'good for getting strong',
+      price: 22.29,
+      id: "302"
     },
   ]
-
 
 
   return (

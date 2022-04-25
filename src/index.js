@@ -4,11 +4,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import CartProvider from './store/cartProvider';
 
 ReactDOM.render(
   <StrictMode>
     <ColorModeScript />
-    <App />
+    <CartProvider>
+      <App />
+    </CartProvider>
   </StrictMode>,
   document.getElementById('root')
 );
