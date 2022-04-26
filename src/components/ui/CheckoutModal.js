@@ -37,6 +37,11 @@ const CheckoutModal = () => {
         ctx.addItem({ ...item, amount: 1 })
     }
 
+    const removeItemHandler = (id) => {
+        ctx.removeItem(id)
+    }
+
+
     return (
         <>
             <Button onClick={onOpen}>
@@ -68,7 +73,7 @@ const CheckoutModal = () => {
                                         </Flex>
                                         <Flex alignSelf="end" >
                                             <IconButton onClick={addItemHandler.bind(null, item)} mr="2" icon={<FaPlus />} />
-                                            <IconButton icon={<FaMinus />} />
+                                            <IconButton onClick={removeItemHandler.bind(null, item.id)} icon={<FaMinus />} />
                                         </Flex>
                                     </Flex>
 

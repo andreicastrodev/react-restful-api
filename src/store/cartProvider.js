@@ -38,6 +38,31 @@ const CartProvider = ({ children }) => {
                     items: updatedItems,
                     totalAmount: updatedTotalAmount
                 }
+            case "REMOVE_ITEM":
+                const existingCartIndex = state.items.findIndex(item => item.id === action.payload);
+                const existingItem = state.items[existingCartIndex];
+                let updatedCartItem;
+                const updatedTotal = state.totalAmount - existingItem.price;
+
+                console.log(existingItem)
+                if (existingItem.amount === 1) {
+                    updatedCartItem = state.items.filter(item => item.id !== action.payload)
+                } else {
+                    const updatedCarItem = {
+                        ...existingItem,
+                        amount: existingItem.amount - 1
+                    }
+                    updatedCartItem = [...state.items];
+                    updatedCartItem[existingCartIndex] = updatedCarItem
+
+                }
+
+
+                return {
+                    items: updatedCartItem,
+                    totalAmount: updatedTotal
+                }
+
             default:
                 return state
         }
