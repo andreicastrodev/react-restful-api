@@ -5,17 +5,12 @@ import {
   theme,
 } from '@chakra-ui/react';
 
-
 import Header from './components/Header';
 import Details from "./components/Details"
 import Food from './components/main/Food';
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AddFoods from './routes/AddFoods';
 function App() {
-
-  const [cartState, setCartState] = useState({
-    items: [],
-    totalAmount: 0
-  })
 
 
   const INIT_STATE = [
@@ -42,11 +37,18 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
-      <VStack>
-        <Header />
-        <Details />
-        <Food data={INIT_STATE} />
-      </VStack>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<VStack>
+            <Header />
+            <Details />
+            <Food data={INIT_STATE} />
+          </VStack>} />
+          <Route path="/addfood" element={<AddFoods />} />
+        </Routes>
+
+      </BrowserRouter>
+
     </ChakraProvider>
   );
 }
