@@ -6,6 +6,7 @@ import CartContext from "./cart-context";
 
 const defaultState = {
     items: [],
+    availableItems: [],
     totalAmount: 0
 }
 
@@ -35,8 +36,15 @@ const CartProvider = ({ children }) => {
                 }
 
                 return {
+                    ...state,
                     items: updatedItems,
                     totalAmount: updatedTotalAmount
+                }
+            case "ADD_AVAILABLE_ITEMS":
+                const availableFoods = [...action.payload]
+                return {
+                    ...state,
+                    availableItems: availableFoods
                 }
             case "REMOVE_ITEM":
                 const existingCartIndex = state.items.findIndex(item => item.id === action.payload);
@@ -59,6 +67,7 @@ const CartProvider = ({ children }) => {
 
 
                 return {
+                    ...state,
                     items: updatedCartItem,
                     totalAmount: updatedTotal
                 }
@@ -75,8 +84,12 @@ const CartProvider = ({ children }) => {
 
     const addItemToCartHandler = (item) => {
         dispatch({ type: "ADD_ITEM", payload: item });
-        console.log(cartState)
     }
+
+    const addAvailableItemsHandler = (items) => {
+        dispatch({ type: "ADD_AVAILABLE_ITEMS", payload: items });
+    }
+
 
     const removeItemToCartHandler = (id) => {
         dispatch({ type: 'REMOVE_ITEM', payload: id })
@@ -86,7 +99,9 @@ const CartProvider = ({ children }) => {
     const cartContext = {
         items: cartState.items,
         totalAmount: cartState.totalAmount,
+        availableItems: cartState.availableItems,
         addItem: addItemToCartHandler,
+        addAvailableItems: addAvailableItemsHandler,
         removeItem: removeItemToCartHandler
     }
 

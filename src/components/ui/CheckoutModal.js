@@ -61,7 +61,7 @@ const CheckoutModal = () => {
                         {
                             ctx.items.map(item => {
                                 return (
-                                    <Flex justifyContent="space-between" alignItems="center" p="1rem" borderBottom={`1px solid ${textColor}`}>
+                                    <Flex justifyContent="space-between" alignItems="center" p="1rem" borderBottom={`1px solid ${textColor}`} key={item.id}>
                                         <Text fontSize="2xl">{item.title}</Text>
                                         <Flex alignItems="center" >
                                             <Text fontSize="2xl" mr="2">
